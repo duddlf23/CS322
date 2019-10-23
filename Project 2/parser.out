@@ -1,0 +1,279 @@
+Created by PLY version 3.9 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> expression
+Rule 2     statement -> <empty>
+Rule 3     expression -> expression expression
+Rule 4     expression -> expression DOT expression
+Rule 5     expression -> expression STAR
+Rule 6     expression -> expression PLUS
+Rule 7     expression -> LPAREN expression RPAREN
+Rule 8     expression -> LPAREN RPAREN
+Rule 9     expression -> SYMBOL
+
+Terminals, with rules where they appear
+
+DOT                  : 4
+LPAREN               : 7 8
+PLUS                 : 6
+RPAREN               : 7 8
+STAR                 : 5
+SYMBOL               : 9
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 1 3 3 4 4 5 6 7
+statement            : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . expression
+    (2) statement -> .
+    (3) expression -> . expression expression
+    (4) expression -> . expression DOT expression
+    (5) expression -> . expression STAR
+    (6) expression -> . expression PLUS
+    (7) expression -> . LPAREN expression RPAREN
+    (8) expression -> . LPAREN RPAREN
+    (9) expression -> . SYMBOL
+
+    $end            reduce using rule 2 (statement -> .)
+    LPAREN          shift and go to state 3
+    SYMBOL          shift and go to state 2
+
+    expression                     shift and go to state 4
+    statement                      shift and go to state 1
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (9) expression -> SYMBOL .
+
+    DOT             reduce using rule 9 (expression -> SYMBOL .)
+    STAR            reduce using rule 9 (expression -> SYMBOL .)
+    PLUS            reduce using rule 9 (expression -> SYMBOL .)
+    LPAREN          reduce using rule 9 (expression -> SYMBOL .)
+    SYMBOL          reduce using rule 9 (expression -> SYMBOL .)
+    $end            reduce using rule 9 (expression -> SYMBOL .)
+    RPAREN          reduce using rule 9 (expression -> SYMBOL .)
+
+
+state 3
+
+    (7) expression -> LPAREN . expression RPAREN
+    (8) expression -> LPAREN . RPAREN
+    (3) expression -> . expression expression
+    (4) expression -> . expression DOT expression
+    (5) expression -> . expression STAR
+    (6) expression -> . expression PLUS
+    (7) expression -> . LPAREN expression RPAREN
+    (8) expression -> . LPAREN RPAREN
+    (9) expression -> . SYMBOL
+
+    RPAREN          shift and go to state 5
+    LPAREN          shift and go to state 3
+    SYMBOL          shift and go to state 2
+
+    expression                     shift and go to state 6
+
+state 4
+
+    (1) statement -> expression .
+    (3) expression -> expression . expression
+    (4) expression -> expression . DOT expression
+    (5) expression -> expression . STAR
+    (6) expression -> expression . PLUS
+    (3) expression -> . expression expression
+    (4) expression -> . expression DOT expression
+    (5) expression -> . expression STAR
+    (6) expression -> . expression PLUS
+    (7) expression -> . LPAREN expression RPAREN
+    (8) expression -> . LPAREN RPAREN
+    (9) expression -> . SYMBOL
+
+    $end            reduce using rule 1 (statement -> expression .)
+    DOT             shift and go to state 10
+    STAR            shift and go to state 7
+    PLUS            shift and go to state 8
+    LPAREN          shift and go to state 3
+    SYMBOL          shift and go to state 2
+
+    expression                     shift and go to state 9
+
+state 5
+
+    (8) expression -> LPAREN RPAREN .
+
+    DOT             reduce using rule 8 (expression -> LPAREN RPAREN .)
+    STAR            reduce using rule 8 (expression -> LPAREN RPAREN .)
+    PLUS            reduce using rule 8 (expression -> LPAREN RPAREN .)
+    LPAREN          reduce using rule 8 (expression -> LPAREN RPAREN .)
+    SYMBOL          reduce using rule 8 (expression -> LPAREN RPAREN .)
+    $end            reduce using rule 8 (expression -> LPAREN RPAREN .)
+    RPAREN          reduce using rule 8 (expression -> LPAREN RPAREN .)
+
+
+state 6
+
+    (7) expression -> LPAREN expression . RPAREN
+    (3) expression -> expression . expression
+    (4) expression -> expression . DOT expression
+    (5) expression -> expression . STAR
+    (6) expression -> expression . PLUS
+    (3) expression -> . expression expression
+    (4) expression -> . expression DOT expression
+    (5) expression -> . expression STAR
+    (6) expression -> . expression PLUS
+    (7) expression -> . LPAREN expression RPAREN
+    (8) expression -> . LPAREN RPAREN
+    (9) expression -> . SYMBOL
+
+    RPAREN          shift and go to state 11
+    DOT             shift and go to state 10
+    STAR            shift and go to state 7
+    PLUS            shift and go to state 8
+    LPAREN          shift and go to state 3
+    SYMBOL          shift and go to state 2
+
+    expression                     shift and go to state 9
+
+state 7
+
+    (5) expression -> expression STAR .
+
+    DOT             reduce using rule 5 (expression -> expression STAR .)
+    STAR            reduce using rule 5 (expression -> expression STAR .)
+    PLUS            reduce using rule 5 (expression -> expression STAR .)
+    LPAREN          reduce using rule 5 (expression -> expression STAR .)
+    SYMBOL          reduce using rule 5 (expression -> expression STAR .)
+    $end            reduce using rule 5 (expression -> expression STAR .)
+    RPAREN          reduce using rule 5 (expression -> expression STAR .)
+
+
+state 8
+
+    (6) expression -> expression PLUS .
+
+    DOT             reduce using rule 6 (expression -> expression PLUS .)
+    STAR            reduce using rule 6 (expression -> expression PLUS .)
+    PLUS            reduce using rule 6 (expression -> expression PLUS .)
+    LPAREN          reduce using rule 6 (expression -> expression PLUS .)
+    SYMBOL          reduce using rule 6 (expression -> expression PLUS .)
+    $end            reduce using rule 6 (expression -> expression PLUS .)
+    RPAREN          reduce using rule 6 (expression -> expression PLUS .)
+
+
+state 9
+
+    (3) expression -> expression expression .
+    (3) expression -> expression . expression
+    (4) expression -> expression . DOT expression
+    (5) expression -> expression . STAR
+    (6) expression -> expression . PLUS
+    (3) expression -> . expression expression
+    (4) expression -> . expression DOT expression
+    (5) expression -> . expression STAR
+    (6) expression -> . expression PLUS
+    (7) expression -> . LPAREN expression RPAREN
+    (8) expression -> . LPAREN RPAREN
+    (9) expression -> . SYMBOL
+
+  ! shift/reduce conflict for DOT resolved as shift
+  ! shift/reduce conflict for STAR resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for SYMBOL resolved as shift
+    $end            reduce using rule 3 (expression -> expression expression .)
+    RPAREN          reduce using rule 3 (expression -> expression expression .)
+    DOT             shift and go to state 10
+    STAR            shift and go to state 7
+    PLUS            shift and go to state 8
+    LPAREN          shift and go to state 3
+    SYMBOL          shift and go to state 2
+
+  ! DOT             [ reduce using rule 3 (expression -> expression expression .) ]
+  ! STAR            [ reduce using rule 3 (expression -> expression expression .) ]
+  ! PLUS            [ reduce using rule 3 (expression -> expression expression .) ]
+  ! LPAREN          [ reduce using rule 3 (expression -> expression expression .) ]
+  ! SYMBOL          [ reduce using rule 3 (expression -> expression expression .) ]
+
+    expression                     shift and go to state 9
+
+state 10
+
+    (4) expression -> expression DOT . expression
+    (3) expression -> . expression expression
+    (4) expression -> . expression DOT expression
+    (5) expression -> . expression STAR
+    (6) expression -> . expression PLUS
+    (7) expression -> . LPAREN expression RPAREN
+    (8) expression -> . LPAREN RPAREN
+    (9) expression -> . SYMBOL
+
+    LPAREN          shift and go to state 3
+    SYMBOL          shift and go to state 2
+
+    expression                     shift and go to state 12
+
+state 11
+
+    (7) expression -> LPAREN expression RPAREN .
+
+    DOT             reduce using rule 7 (expression -> LPAREN expression RPAREN .)
+    STAR            reduce using rule 7 (expression -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 7 (expression -> LPAREN expression RPAREN .)
+    LPAREN          reduce using rule 7 (expression -> LPAREN expression RPAREN .)
+    SYMBOL          reduce using rule 7 (expression -> LPAREN expression RPAREN .)
+    $end            reduce using rule 7 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 7 (expression -> LPAREN expression RPAREN .)
+
+
+state 12
+
+    (4) expression -> expression DOT expression .
+    (3) expression -> expression . expression
+    (4) expression -> expression . DOT expression
+    (5) expression -> expression . STAR
+    (6) expression -> expression . PLUS
+    (3) expression -> . expression expression
+    (4) expression -> . expression DOT expression
+    (5) expression -> . expression STAR
+    (6) expression -> . expression PLUS
+    (7) expression -> . LPAREN expression RPAREN
+    (8) expression -> . LPAREN RPAREN
+    (9) expression -> . SYMBOL
+
+    DOT             reduce using rule 4 (expression -> expression DOT expression .)
+    PLUS            reduce using rule 4 (expression -> expression DOT expression .)
+    LPAREN          reduce using rule 4 (expression -> expression DOT expression .)
+    SYMBOL          reduce using rule 4 (expression -> expression DOT expression .)
+    $end            reduce using rule 4 (expression -> expression DOT expression .)
+    RPAREN          reduce using rule 4 (expression -> expression DOT expression .)
+    STAR            shift and go to state 7
+
+  ! STAR            [ reduce using rule 4 (expression -> expression DOT expression .) ]
+  ! DOT             [ shift and go to state 10 ]
+  ! PLUS            [ shift and go to state 8 ]
+  ! LPAREN          [ shift and go to state 3 ]
+  ! SYMBOL          [ shift and go to state 2 ]
+
+    expression                     shift and go to state 9
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for DOT in state 9 resolved as shift
+WARNING: shift/reduce conflict for STAR in state 9 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 9 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 9 resolved as shift
+WARNING: shift/reduce conflict for SYMBOL in state 9 resolved as shift
